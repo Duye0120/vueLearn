@@ -3,12 +3,16 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import express from './server/plugins/express-plugin'
 import { fileURLToPath } from 'url'
+import svgLoader from 'vite-svg-loader'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    express()
+    express(),
+    svgLoader({
+      defaultImport: 'component' // 可以是 'url', 'raw', 'component'
+    })
   ],
   resolve: {
     alias: {
