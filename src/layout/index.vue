@@ -57,7 +57,7 @@
           </a-menu>
         </a-layout-sider>
         <a-layout class="p-5">
-          <a-layout-content :style="{ padding: '24px', margin: 0, minHeight: '280px' }">
+          <a-layout-content>
             <RouterView />
           </a-layout-content>
         </a-layout>
