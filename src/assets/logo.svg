@@ -1,7 +1,6 @@
 <svg width="129" height="26" xmlns="http://www.w3.org/2000/svg" fill="none" class="text-black dark:text-white block w-auto h-6">
 
  <g>
-  <title>Layer 1</title>
-  <text xml:space="preserve" text-anchor="start" font-family="'Fira Code'" font-size="26" id="svg_6" y="21.90511" x="1.88317" stroke-width="0" stroke="null" fill="#000000">VueLearn</text>
+  <text xml:space="preserve" text-anchor="start" font-family="'Fira Code'" font-size="26" id="svg_6" y="21.90511" x="1.88317" stroke-width="0" stroke="null" fill="currentColor">VueLearn</text>
  </g>
 </svg>

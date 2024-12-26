@@ -14,6 +14,13 @@ export default defineConfig({
       defaultImport: 'component' // 可以是 'url', 'raw', 'component'
     })
   ],
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

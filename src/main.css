@@ -10,3 +10,21 @@ html,body,#app {
   margin: 0;
   padding: 0;
 }
+
+
+:root[data-theme='dark'] {
+  /* 自定义深色模式变量 */
+  --bg-color: #141414;
+  --text-color: #fff;
+}
+
+:root[data-theme='light'] {
+  /* 自定义浅色模式变量 */
+  --bg-color: #fff;
+  --text-color: #000;
+}
+
+.app-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
