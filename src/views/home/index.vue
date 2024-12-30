@@ -1,21 +1,23 @@
 <template>
   <div class="w-full flex flex-col gap-5">
     <div class="h-[148px] w-full grid grid-cols-4 gap-5">
-      <a-card v-for="item in topCardGroupArray" :key="item.key" class="flex flex-col p-5 top-card-group-item">
-        <div class=" flex flex-row justify-between mb-5">
+      <a-card v-for="item in topCardGroupArray" :key="item.key" class="flex flex-col p-5 h-[148px] top-card-group-item">
+        <div class=" flex flex-row justify-between">
           <a-typography-text class="font-medium text-base">{{ item.title }}</a-typography-text>
           <div :class="getDiffClass(item.key)">
             <component :is="iconMap[item.key]" />
           </div>
         </div>
         <div class="flex-1 flex flex-row gap-[20px]">
-          <div class="flex-1 flex flex-col gap-[10px]">
+          <div class="flex flex-col justify-center">
             <a-typography-text class="text-3xl">{{ formatNumber(item.currentValue) }}</a-typography-text>
             <a-typography-text class="text-xl font-medium"
               :class="item.type === 'improve' ? 'text-green-500' : 'text-red-500'">{{ item.type === 'improve' ? '+' :
-              '-' }}{{ item.percent }}%</a-typography-text>
+                '-' }}{{ item.percent }}%</a-typography-text>
           </div>
-          <div>charts</div>
+          <div class="flex-1">
+            <SmoothLine :data="item.chartsData" :color="getColor(item.key)" />
+          </div>
         </div>
       </a-card>
     </div>
@@ -25,7 +27,7 @@
 <script lang="ts" setup>
 import { topCardGroupArray } from './data';
 import { formatNumber } from './utils';
-
+import SmoothLine from './components/SmoothLine.vue';
 import {
   UserOutlined,
   QuestionCircleOutlined,
@@ -54,7 +56,15 @@ const getDiffClass = (key: string) => {
   return classMap[key] || baseClass
 }
 
-
+const getColor = (key: string) => {
+  const colorMap = {
+    demand: '#1890ff',
+    question: '#36d700',
+    answer: '#9c27b0',
+    userSatisfaction: '#ff9800'
+  }
+  return colorMap[key] || '#1890ff'
+}
 
 
 </script>
