@@ -28,3 +28,22 @@ html,body,#app {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.15);
+  transition: color 0.2s ease;
+}

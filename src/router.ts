@@ -24,7 +24,11 @@ router.beforeEach((to, from, next) => {
   const pageTitle = to.name
 
   document.title = pageTitle ? `${pageTitle as string} | ${baseTitle}` : baseTitle
-  next()
+  if (to.path === '/') {
+    next('/home')
+  } else {
+    next()
+  }
 })
 
 export default router

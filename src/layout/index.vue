@@ -8,9 +8,7 @@
         <a-menu v-model:selectedKeys="leftSelectKeys" v-model:openKeys="leftOpenKeys" mode="inline"
           :style="{ height: '100%', borderRight: 0 }">
           <a-menu-item key="home">
-            <template #icon>
-              <home-outlined />
-            </template>
+            <HomeOutlined />
             首页
           </a-menu-item>
           <a-sub-menu key="sub1">
@@ -58,7 +56,8 @@
           </a-breadcrumb>
           <ThemeSwitch />
         </a-layout-header>
-        <a-layout-content class="p-5">
+        <a-layout-content
+          class="p-5 bg-[#f5f5f5] dark:!bg-[#141414] overflow-y-auto scroll-smooth  h-[calc(100vh-64px)]">
           <RouterView />
         </a-layout-content>
       </a-layout>
@@ -68,26 +67,14 @@
 <script lang="ts" setup>
 import { computed, inject, ref } from 'vue';
 import Logo from '@/assets/logo.svg'
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
-import ThemeSwitch from '@/components/ThemeSwitch.vue';
+import { UserOutlined, LaptopOutlined, NotificationOutlined, HomeOutlined } from '@ant-design/icons-vue';
+import ThemeSwitch from './components/ThemeSwitch/index.vue';
 import { theme } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
-import { watch } from 'fs';
 const router = useRouter();
 const title = computed(() => router.currentRoute.value.name);
-console.log('🚀 ~ title:', title);
 
-// 监听路由变化，如果是根路径则重定向到 home 页面
-router.beforeEach((to, from, next) => {
-  if (to.path === '/') {
-    next('/home')
-  } else {
-    next()
-  }
-})
-
-
-
+// 主题修改
 const isDarkMode = inject<any>('isDarkMode');
 
 const themeConfig = computed(() => ({
