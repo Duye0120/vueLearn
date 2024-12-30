@@ -1,53 +1,72 @@
 <template>
   <div class="w-full flex flex-col gap-5">
     <div class="h-[148px] w-full grid grid-cols-4 gap-5">
-      <a-card v-for="item in topCardGroupArray" :key="item.title"></a-card>
+      <a-card v-for="item in topCardGroupArray" :key="item.key" class="flex flex-col p-5 top-card-group-item">
+        <div class=" flex flex-row justify-between mb-5">
+          <a-typography-text class="font-medium text-base">{{ item.title }}</a-typography-text>
+          <div :class="getDiffClass(item.key)">
+            <component :is="iconMap[item.key]" />
+          </div>
+        </div>
+        <div class="flex-1 flex flex-row gap-[20px]">
+          <div class="flex-1 flex flex-col gap-[10px]">
+            <a-typography-text class="text-3xl">{{ formatNumber(item.currentValue) }}</a-typography-text>
+            <a-typography-text class="text-xl font-medium"
+              :class="item.type === 'improve' ? 'text-green-500' : 'text-red-500'">{{ item.type === 'improve' ? '+' :
+              '-' }}{{ item.percent }}%</a-typography-text>
+          </div>
+          <div>charts</div>
+        </div>
+      </a-card>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { TopCardGroupArray } from './type';
+import { topCardGroupArray } from './data';
 import { formatNumber } from './utils';
 
+import {
+  UserOutlined,
+  QuestionCircleOutlined,
+  MessageOutlined,
+  SmileOutlined
+} from '@ant-design/icons-vue'
 
-const topCardGroupArray: TopCardGroupArray[] = [
-  {
-    title: '需求人数',
-    key: 'demand',
-    currentValue: 36000,
-    type: 'improve',
-    percent: 10,
-    chartsData: Array.from({ length: 7 }, () => Math.floor(Math.random() * 900) + 100)
-  },
-  {
-    title: '提问数量',
-    key: 'demand',
-    currentValue: 16580,
-    type: 'improve',
-    percent: 70,
-    chartsData: Array.from({ length: 7 }, () => Math.floor(Math.random() * 900) + 100)
-  },
-  {
-    title: '回答数量',
-    key: 'answer',
-    currentValue: 16580,
-    type: 'reduce',
-    percent: 70,
-    chartsData: Array.from({ length: 7 }, () => Math.floor(Math.random() * 900) + 100)
-  },
-  {
-    title: '用户满意度',
-    key: 'userSatisfaction',
-    currentValue: 100,
-    type: 'improve',
-    percent: 100,
-    chartsData: Array.from({ length: 7 }, () => Math.floor(Math.random() * 900) + 100)
+const iconMap = {
+  demand: UserOutlined,
+  question: QuestionCircleOutlined,
+  answer: MessageOutlined,
+  userSatisfaction: SmileOutlined
+}
+
+// 返回不同的 Tailwind 类名组合
+const getDiffClass = (key: string) => {
+  const baseClass = 'p-2 rounded-md flex items-center justify-center'
+
+  const classMap = {
+    demand: `${baseClass} bg-blue-100 dark:bg-blue-900 text-blue-500 dark:text-blue-500`,
+    question: `${baseClass} bg-green-100 dark:bg-green-900 text-green-500 dark:text-green-500`,
+    answer: `${baseClass} bg-purple-100 dark:bg-purple-900 text-purple-500 dark:text-purple-500`,
+    userSatisfaction: `${baseClass} bg-orange-100 dark:bg-orange-900 text-orange-500 dark:text-orange-500`
   }
-]
+
+  return classMap[key] || baseClass
+}
+
+
 
 
 </script>
 
 
-<style scoped></style>
+<style scoped lang="scss">
+.top-card-group-item {
+  :global(.ant-card-body) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+  }
+}
+</style>
