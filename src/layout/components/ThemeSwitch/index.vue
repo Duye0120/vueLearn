@@ -1,11 +1,11 @@
-<template>
-  <a-switch :checked="isDarkMode" checked-children="🌙" un-checked-children="☀️" @change="toggleTheme" />
-</template>
-
 <script setup>
-import { inject } from 'vue';
-import { Switch as ASwitch } from 'ant-design-vue';
+import { Switch as ASwitch } from 'ant-design-vue'
+import { inject } from 'vue'
 
-const isDarkMode = inject('isDarkMode');
-const toggleTheme = inject('toggleTheme');
+const isDarkMode = inject('isDarkMode')
+const toggleTheme = inject('toggleTheme')
 </script>
+
+<template>
+  <ASwitch :checked="isDarkMode" checked-children="🌙" un-checked-children="☀️" @change="toggleTheme" />
+</template>

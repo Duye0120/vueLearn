@@ -1,12 +1,14 @@
 {
-  "name": "vuelearn",
-  "private": true,
-  "version": "0.0.0",
+  "name": "vue-learn",
   "type": "module",
+  "version": "0.0.0",
+  "private": false,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "ant-design-vue": "^4.2.6",
@@ -17,6 +19,7 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^3.12.1",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/lodash": "^4.17.13",

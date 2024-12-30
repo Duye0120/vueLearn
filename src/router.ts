@@ -1,5 +1,5 @@
-import { createWebHistory, createRouter, createWebHashHistory } from 'vue-router'
 import Home from '@/views/home/index.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
   {
@@ -15,7 +15,6 @@ const router = createRouter({
   routes,
 })
 
-
 router.beforeEach((to, from, next) => {
   // 基础标题
   const baseTitle = 'VueLearn'
@@ -26,7 +25,8 @@ router.beforeEach((to, from, next) => {
   document.title = pageTitle ? `${pageTitle as string} | ${baseTitle}` : baseTitle
   if (to.path === '/') {
     next('/home')
-  } else {
+  }
+  else {
     next()
   }
 })

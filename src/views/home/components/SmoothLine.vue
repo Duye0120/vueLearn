@@ -1,11 +1,7 @@
-<template>
-  <div ref="chartRef" class="w-full h-full"></div>
-</template>
-
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
-import * as echarts from 'echarts'
 import type { EChartsOption } from 'echarts'
+import * as echarts from 'echarts'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 
 const props = defineProps<{
   data: number[]
@@ -16,33 +12,34 @@ const chartRef = ref<HTMLElement | null>(null)
 let chartInstance: echarts.ECharts | null = null
 
 // 获取图表配置
-const getOptions = (data: number[], color: string = '#1890ff'): EChartsOption => ({
-  animation: false, // 关闭动画以获得更好的性能
-  grid: {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  },
-  xAxis: {
-    type: 'category',
-    data: new Array(data.length).fill(''),
-    show: false // 隐藏x轴
-  },
-  yAxis: {
-    type: 'value',
-    show: false // 隐藏y轴
-  },
-  series: [
-    {
-      type: 'line',
-      data: data,
-      smooth: true,
-      symbol: 'none', // 不显示数据点
-      lineStyle: {
-        width: 2,
-        color: color
-      },
+function getOptions(data: number[], color: string = '#1890ff'): EChartsOption {
+  return {
+    animation: false, // 关闭动画以获得更好的性能
+    grid: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    xAxis: {
+      type: 'category',
+      data: Array.from({ length: data.length }).fill(''),
+      show: false, // 隐藏x轴
+    },
+    yAxis: {
+      type: 'value',
+      show: false, // 隐藏y轴
+    },
+    series: [
+      {
+        type: 'line',
+        data,
+        smooth: true,
+        symbol: 'none', // 不显示数据点
+        lineStyle: {
+          width: 2,
+          color,
+        },
       // areaStyle: {
       //   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
       //     {
@@ -55,12 +52,13 @@ const getOptions = (data: number[], color: string = '#1890ff'): EChartsOption =>
       //     }
       //   ])
       // }
-    }
-  ]
-})
+      },
+    ],
+  }
+}
 
 // 初始化图表
-const initChart = () => {
+function initChart() {
   if (chartRef.value) {
     chartInstance = echarts.init(chartRef.value)
     chartInstance.setOption(getOptions(props.data, props.color))
@@ -68,7 +66,7 @@ const initChart = () => {
 }
 
 // 处理窗口大小变化
-const handleResize = () => {
+function handleResize() {
   chartInstance?.resize()
 }
 
@@ -80,7 +78,7 @@ watch(
       chartInstance.setOption(getOptions(newData as number[], newColor as string))
     }
   },
-  { deep: true }
+  { deep: true },
 )
 
 onMounted(() => {
@@ -93,3 +91,7 @@ onUnmounted(() => {
   chartInstance?.dispose()
 })
 </script>
+
+<template>
+  <div ref="chartRef" class="w-full h-full" />
+</template>
