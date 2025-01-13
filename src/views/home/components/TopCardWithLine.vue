@@ -71,4 +71,13 @@ function getColor(key: string) {
   </a-card>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.top-card-group-item {
+  :global(.ant-card-body) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+  }
+}
+</style>
