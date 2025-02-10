@@ -51,7 +51,7 @@ function getColor(key: string) {
     </div>
     <div class="flex-1 flex flex-row gap-[20px]">
       <div class="flex flex-col justify-center">
-        <a-typography-text class="text-3xl">
+        <a-typography-text class="text-2xl md:text-xl xl:text-2xl text-nowrap">
           {{ formatNumber(props.data.currentValue) }}
         </a-typography-text>
         <a-typography-text

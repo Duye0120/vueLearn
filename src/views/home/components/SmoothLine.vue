@@ -40,18 +40,6 @@ function getOptions(data: number[], color: string = '#1890ff'): EChartsOption {
           width: 2,
           color,
         },
-      // areaStyle: {
-      //   color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      //     {
-      //       offset: 0,
-      //       color: echarts.color.stringify(echarts.color.lerp(0.6, echarts.color.parse(color)!, { type: 'rgba', a: 0.3 }))
-      //     },
-      //     {
-      //       offset: 1,
-      //       color: echarts.color.stringify(echarts.color.lerp(0.6, echarts.color.parse(color)!, { type: 'rgba', a: 0 }))
-      //     }
-      //   ])
-      // }
       },
     ],
   }
