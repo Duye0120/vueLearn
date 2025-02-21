@@ -70,8 +70,8 @@ watch(
             <a-menu-item key="print">
               打字机
             </a-menu-item>
-            <a-menu-item key="2">
-              option2
+            <a-menu-item key="cesium">
+              cesium
             </a-menu-item>
             <a-menu-item key="3">
               option3

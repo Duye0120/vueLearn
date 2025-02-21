@@ -1,5 +1,6 @@
 import Home from '@/views/home/index.vue'
 import Print from '@/views/print/index.vue'
+import Cesium from '@/views/cesium/index.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
@@ -12,6 +13,15 @@ const routes = [
     path: '/print',
     name: '打印',
     component: Print,
+  },
+  {
+    path: '/cesium',
+    name: 'Cesium示例',
+    component: Cesium,
+  },
+  {
+    path: '/',
+    redirect: '/home',
   },
 ]
 

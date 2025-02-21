@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
+import cesium from 'vite-plugin-cesium'
 import svgLoader from 'vite-svg-loader'
 import express from './server/plugins/express-plugin'
 
@@ -12,6 +13,7 @@ export default defineConfig({
     svgLoader({
       defaultImport: 'component', // 可以是 'url', 'raw', 'component'
     }),
+    cesium(),
   ],
   css: {
     preprocessorOptions: {
@@ -36,5 +38,8 @@ export default defineConfig({
         rewrite: path => path,
       },
     },
+  },
+  build: {
+    chunkSizeWarningLimit: 2000, // 增加块大小警告限制，因为 Cesium 很大
   },
 })
