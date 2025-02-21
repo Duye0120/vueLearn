@@ -2,7 +2,7 @@
 import * as echarts from 'echarts'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 
-const props = defineProps<{}>()
+// const props = defineProps<{}>()
 const selectedRadio = ref('last')
 const chartsRef = ref<HTMLDivElement | null>(null)
 let chartInstance: echarts.ECharts | null = null

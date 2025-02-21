@@ -4,7 +4,7 @@ import TopCardWithLine from './components/TopCardWithLine.vue'
 import VerticalBar from './components/VerticalBar.vue'
 import { topCardGroupArray } from './data'
 
-const columns = [
+const myColumns = [
   {
     title: '序号',
     dataIndex: 'index',
@@ -54,7 +54,7 @@ const columns = [
       <!-- 一个antd-vue-table的组件 -->
       <div class="col-span-3">
         <a-card title="数据统计" body-style="padding: 16px !important">
-          <a-table :data-source="[]" :columns="columns" />
+          <a-table :data-source="[]" :columns="myColumns" />
         </a-card>
       </div>
       <div class="col-span-1">

@@ -1,4 +1,5 @@
 import Home from '@/views/home/index.vue'
+import Print from '@/views/print/index.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
@@ -7,7 +8,11 @@ const routes = [
     name: '首页',
     component: Home,
   },
-  // { path: '/about', component: AboutView },
+  {
+    path: '/print',
+    name: '打印',
+    component: Print,
+  },
 ]
 
 const router = createRouter({

@@ -2,7 +2,7 @@
 import Logo from '@/assets/logo.svg'
 import { HomeOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { theme } from 'ant-design-vue'
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import ThemeSwitch from './components/ThemeSwitch/index.vue'
 
@@ -14,15 +14,35 @@ const isDarkMode = inject<any>('isDarkMode')
 
 const themeConfig = computed(() => ({
   algorithm: isDarkMode.value ? theme.darkAlgorithm : theme.defaultAlgorithm,
-  // 可以在这里添加其他主题配置
   token: {
     // 自定义 token
   },
 }))
 
-const selectedKeys1 = ref<string[]>(['2'])
 const leftSelectKeys = ref<string[]>(['home'])
 const leftOpenKeys = ref<string[]>(['sub1'])
+
+// 当菜单选择改变时，更新路由
+watch(leftSelectKeys, (newValue) => {
+  router.push(newValue[0])
+})
+
+// 当路由改变时，更新菜单选择
+watch(
+  () => router.currentRoute.value.path,
+  (newPath) => {
+    // 移除开头的斜杠
+    const path = newPath.slice(1)
+    // 如果路径为空，设置为home
+    leftSelectKeys.value = [path || 'home']
+
+    // 如果新路径属于某个子菜单，确保该子菜单是展开的
+    if (path === 'print') {
+      leftOpenKeys.value = ['sub1']
+    }
+  },
+  { immediate: true }, // 立即执行一次，确保初始状态同步
+)
 </script>
 
 <template>
@@ -44,11 +64,11 @@ const leftOpenKeys = ref<string[]>(['sub1'])
             <template #title>
               <span>
                 <UserOutlined />
-                subnav 1
+                杂七杂八
               </span>
             </template>
-            <a-menu-item key="1">
-              option1
+            <a-menu-item key="print">
+              打字机
             </a-menu-item>
             <a-menu-item key="2">
               option2
